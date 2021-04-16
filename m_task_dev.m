@@ -15,6 +15,10 @@ neu_words_num = 15; % # of neutral words to be selected
 word_onesection = neg_words_num + neu_words_num; %2021/04/16新增
 weak_index = randperm(word_onesection); %2021/04/16修改
 strong_index = randperm(word_onesection);%2021/04/16修改
+p_negative = randperm(size(negative_words,1) - neg_words_num);%隨機生成 105個2021/04/16新增
+p_negative = p_negative(1:neg_words_num);%2021/04/16新增
+p_neutral = randperm( size(neutral_words,1) - neu_words_num);%隨機生成45個 2021/04/16新增
+p_neutral = p_neutral(1:neu_words_num);%2021/04/16新增
 
 
 count_neg = 0;
@@ -54,7 +58,6 @@ correct_press = 0;
 % setPulseDuration(device, 5)%ms
 % 
 % 
-
 %%
 
 config_display(0,5);%FULLSCREEN: 1 WINDOW_MODE: 0. config_display(1,5): full screen, res = 1280*1024;
@@ -70,18 +73,21 @@ preparestring('您好，閱讀完畢後按空白鍵繼續閱讀',3);
 drawpict(3);
 waitkeydown(inf,71);
 clearpict(3);
+
 loadpict('grey.jpg',3);
 drawpict(3);
 preparestring('請選出35個和自己相關的負面詞',3);
 drawpict(3);
 waitkeydown(inf,71);
 clearpict(3);
+
 loadpict('grey.jpg',3);
 drawpict(3);
 preparestring('選字請按 V; 不選請按 X',3);
 drawpict(3);
 waitkeydown(inf,71);
 clearpict(3);
+
 loadpict('grey.jpg',3);
 drawpict(3);
 preparestring('準備好後請按空白鍵開始選詞(V：選 ; X：不選)',3);
@@ -126,7 +132,8 @@ while count_neg < neg_words_num
     end
 end
 negative_strong = negative_words(neg_sel == 1);
-negative_weak = negative_words(neg_sel == 0);
+negative_weak_temp = negative_words(neg_sel == 0);%2021/04/16新增
+negative_weak = negative_weak_temp(p_negative);%2021/04/16新增
 
 loadpict('grey.jpg',3);
 drawpict(3);
@@ -186,7 +193,8 @@ while count_neu < neu_words_num
     end
 end
 neutral_sel = neutral_words(neu_sel == 1);
-neutral_weak = neutral_words(neu_sel == 0);
+neutral_weak_temp = neutral_words(neu_sel == 0);%2021/04/16新增
+neutral_weak = neutral_weak_temp(p_neutral); %2021/04/16新增
 
 words_strong = [negative_strong;neutral_sel];
 words_weak = [negative_weak; neutral_weak];
