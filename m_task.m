@@ -12,9 +12,9 @@ time_rec=[];
 
 neg_words_num = 35% # of negative word to be selected
 neu_words_num = 15; % # of neutral words to be selected
-word_onesection = neg_words_num + neu_words_num;
-weak_index = randperm(word_onesection);
-strong_index = randperm(word_onesection);
+word_onesection = neg_words_num + neu_words_num; %2021/04/16新增
+weak_index = randperm(word_onesection); %2021/04/16修改
+strong_index = randperm(word_onesection);%2021/04/16修改
 
 count_neg = 0;
 count_neu = 0;
@@ -58,7 +58,7 @@ setPulseDuration(device, 5)%ms
 
 config_display(1 ,5);%FULLSCREEN: 1 WINDOW_MODE: 0. config_display(1,5): full screen, res = 1280*1024;
 config_keyboard; 
-s_t=3000 %stimuls time = 3000ms
+s_t=4000 %stimuls time = 3000ms 2021/4/16 改成 4000ms
 
 start_cogent;
 keymap = getkeymap;
@@ -221,7 +221,7 @@ trigger_strong(strong_index >= neg_words_num+1) = 7 ; %neutral_strong;
 %%
 %實驗開始
 
-for i = 1:50
+for i = 1:word_onesection %2021/04/16修改
     clearpict(1);
     clearpict(2);
     
@@ -264,7 +264,7 @@ end
 
 %strong stimu.
 
-for i = 1:50
+for i = 1:word_onesection %2021/04/16修改
     clearpict(1);
     clearpict(2);
     word = words_strong(strong_index(i));

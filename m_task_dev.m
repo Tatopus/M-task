@@ -12,9 +12,9 @@ time_rec=[];
 
 neg_words_num = 35% # of negative word to be selected
 neu_words_num = 15; % # of neutral words to be selected
-word_onesection = neg_words_num + neu_words_num;
-weak_index = randperm(word_onesection);
-strong_index = randperm(word_onesection);
+word_onesection = neg_words_num + neu_words_num; %2021/04/16新增
+weak_index = randperm(word_onesection); %2021/04/16修改
+strong_index = randperm(word_onesection);%2021/04/16修改
 
 
 count_neg = 0;
@@ -220,7 +220,7 @@ trigger_strong(strong_index >= neg_words_num+1) = 7 ; %neutral;
 %%
 %實驗開始
 
-for i = 1:word_onesection
+for i = 1:word_onesection %2021/04/16修改
     clearpict(1);
     clearpict(2);
     
@@ -265,7 +265,7 @@ end
 
 %strong stimu.
 
-for i = 1:word_onesection
+for i = 1:word_onesection %2021/04/16修改
     clearpict(1);
     clearpict(2);
     word = words_strong(strong_index(i));
