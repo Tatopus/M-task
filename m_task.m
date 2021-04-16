@@ -9,11 +9,13 @@ clear; clc;
 negative_words = string(negative_words);
 neutral_words = string(neutral_words);
 time_rec=[];
-weak_index = randperm(50);
-strong_index = randperm(50);
 
-neg_words_num = 35;% # of negative word to be selected
+neg_words_num = 35% # of negative word to be selected
 neu_words_num = 15; % # of neutral words to be selected
+word_onesection = neg_words_num + neu_words_num;
+weak_index = randperm(word_onesection);
+strong_index = randperm(word_onesection);
+
 count_neg = 0;
 count_neu = 0;
 neg_sel(1:size(negative_words,1)) = 0;
